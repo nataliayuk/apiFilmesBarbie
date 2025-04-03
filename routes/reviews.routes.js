@@ -11,6 +11,7 @@ const router = express.Router();
 const { 
     criarReviewController, 
     listarReviewsController, 
+    listarReviewPorIdController,
     editarReviewController, 
     removerReviewController
 } = require('../controllers/reviews.controller');
@@ -20,6 +21,7 @@ const {
 router.post('/', criarReviewController); 
 // Rota GET para buscar as reviews (READ)
 router.get('/', listarReviewsController);
+router.get('/:id', listarReviewPorIdController);
 // Rota PUT para editar uma review (UPDATE)
 router.put('/:id', editarReviewController);
 // Rota DELETE para remover uma review (DELETE)

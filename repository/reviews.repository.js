@@ -19,6 +19,13 @@ async function buscarReviews() {
     return await prisma.review.findMany();
 }
 
+// Função que busca uma review específica
+async function buscarReviewPorId(id) {
+    return await prisma.review.findUnique({
+        where: { id: Number(id) }
+    });
+}
+
 // ----- UPDATE -----
 // Função que vai atualizar uma review
 async function atualizarReview (id, dadosAtualizados) {
@@ -40,6 +47,7 @@ async function deletarReview(id) {
 module.exports = {
     salvarReview,   
     buscarReviews,
+    buscarReviewPorId,
     atualizarReview,
     deletarReview
 }

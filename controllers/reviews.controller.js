@@ -4,6 +4,7 @@
 const { 
     criarNovaReview, 
     listarReviews, 
+    listarReviewPorId,
     editarReview, 
     removerReview 
   } = require('../usecase/reviews.usecase');
@@ -19,6 +20,18 @@ const {
       res.status(400).json({ message: 'Erro ao criar review', error: error.message });
     }
   }
+
+  // Função que busca uma review específico
+async function listarReviewPorIdController(req, res) {
+  try {
+    const id = Number(req.params.id);
+    const reviewFiltradaId = await listarReviewPorId(id);
+
+    res.status(200).json(reviewFiltradaId);
+  } catch (error) {
+    res.status(400).json({ message: 'Review não encontrada', error: error.message });
+  }
+}
   
   // ----- READ -----
   // Função que vai buscar todas as reviews
@@ -63,6 +76,7 @@ const {
   module.exports = { 
     criarReviewController,
     listarReviewsController,
+    listarReviewPorIdController,
     editarReviewController,
     removerReviewController
   };

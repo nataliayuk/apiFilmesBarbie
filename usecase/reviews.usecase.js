@@ -4,6 +4,7 @@
 const { 
     salvarReview, 
     buscarReviews, 
+    buscarReviewPorId,
     atualizarReview, 
     deletarReview 
 } = require('../repository/reviews.repository');
@@ -28,6 +29,17 @@ async function criarNovaReview(dados) {
 // Função que lista as reviews do banco de dados
 async function listarReviews() {
     return await buscarReviews();
+}
+
+// Função que busca uma review específica
+async function listarReviewPorId(id) {
+
+    // Regra de negócio: id tem que ser número
+    if (!id || typeof id !== 'number') {
+        throw new Error("ID da review inválida.");
+    }
+
+    return await buscarReviewPorId(id);
 }
 
 // ----- UPDATE -----
@@ -66,6 +78,7 @@ async function removerReview(id) {
 module.exports = { 
     criarNovaReview, 
     listarReviews,
+    listarReviewPorId,
     editarReview,
     removerReview
 };
