@@ -4,9 +4,10 @@
 const { 
     salvarFilme, 
     buscarFilmes, 
+    buscarFilmePorId,
     atualizarFilme, 
     deletarFilme 
-} = require('../apiFilmesBarbie/repository/movies.repository');
+} = require('../repository/movies.repository');
 
 // ----- CREATE -----
 // Função que vai receber os dados do filme que o usuário enviou
@@ -28,6 +29,17 @@ async function criarNovoFilme(dados) {
 // Função que lista os filmes do banco de dados
 async function listarFilmes() {
     return await buscarFilmes();
+}
+
+// Função que busca um filme específico
+async function listarFilmePorId(id) {
+
+    // Regra de negócio: id tem que ser número
+    if (!id || typeof id !== 'number') {
+        throw new Error("ID do filme inválida.");
+    }
+
+    return await buscarFilmePorId(id);
 }
 
 // ----- UPDATE -----
@@ -62,6 +74,7 @@ async function removerFilme(id) {
 module.exports = { 
     criarNovoFilme, 
     listarFilmes,
+    listarFilmePorId,
     editarFilme,
     removerFilme
 };

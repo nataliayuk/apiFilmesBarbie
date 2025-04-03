@@ -6,7 +6,7 @@ const {
     buscarReviews, 
     atualizarReview, 
     deletarReview 
-} = require('../apiFilmesBarbie/repository/reviews.repository');
+} = require('../repository/reviews.repository');
 
 // ----- CREATE -----
 // Função que vai receber os dados da review que o usuário enviou

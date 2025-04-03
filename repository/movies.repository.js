@@ -23,6 +23,13 @@ async function buscarFilmes() {
     return await prisma.movie.findMany();
 }
 
+// Função que busca um filme específico
+async function buscarFilmePorId(id) {
+    return await prisma.movie.findUnique({
+        where: { id: Number(id) }
+    });
+}
+
 // ----- UPDATE -----
 // Função que vai atualizar um filme
 async function atualizarFilme(id, dadosAtualizados) {
@@ -36,7 +43,7 @@ async function atualizarFilme(id, dadosAtualizados) {
 // Função que vai deletar um filme
 async function deletarFilme(id) {
     return await prisma.movie.delete({
-        where: { id: Number(id)}
+        where: { id: Number(id) }
     });
 }
 
@@ -45,6 +52,7 @@ async function deletarFilme(id) {
 module.exports = { 
     salvarFilme, 
     buscarFilmes,
+    buscarFilmePorId,
     atualizarFilme,
     deletarFilme,
     prisma

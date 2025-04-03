@@ -12,6 +12,7 @@ const router = express.Router();
 const { 
     criarFilmeController, 
     listarFilmesController, 
+    listarFilmePorIdController,
     editarFilmeController, 
     removerFilmeController
 } = require('../controllers/movies.controller');
@@ -21,7 +22,7 @@ const {
 router.post('/', criarFilmeController); 
 // Rota GET para buscar os filmes (READ)
 router.get('/', listarFilmesController);
-router.get('/:id', listarFilmesController);
+router.get('/:id', listarFilmePorIdController);
 // Rota PUT para editar um filme (UPDATE)
 router.put('/:id', editarFilmeController);
 // Rota DELETE para remover um filme (DELETE)

@@ -4,9 +4,10 @@
 const { 
   criarNovoFilme, 
   listarFilmes, 
+  listarFilmePorId,
   editarFilme, 
   removerFilme 
-} = require('../../usecase/movies.usecase');
+} = require('../usecase/movies.usecase');
 
 // ----- CREATE -----
 // Função que vai criar um novo filme
@@ -28,6 +29,18 @@ async function listarFilmesController(req, res) {
     res.status(200).json(filmes);
   } catch (error) {
     res.status(400).json({ message: 'Erro ao buscar filmes', error: error.message });
+  }
+}
+
+// Função que busca um filme específico
+async function listarFilmePorIdController(req, res) {
+  try {
+    const id = Number(req.params.id);
+    const filmeFiltradoId = await listarFilmePorId(id);
+
+    res.status(200).json(filmeFiltradoId);
+  } catch (error) {
+    res.status(400).json({ message: 'Filme não encontrado', error: error.message });
   }
 }
 
@@ -63,6 +76,7 @@ async function removerFilmeController(req, res) {
 module.exports = { 
   criarFilmeController,
   listarFilmesController,
+  listarFilmePorIdController,
   editarFilmeController,
   removerFilmeController
 };

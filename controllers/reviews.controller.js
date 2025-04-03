@@ -6,7 +6,7 @@ const {
     listarReviews, 
     editarReview, 
     removerReview 
-  } = require('../../usecase/reviews.usecase');
+  } = require('../usecase/reviews.usecase');
   
   // ----- CREATE -----
   // Função que vai criar uma nova review (com dados enviados pelo usuário)
